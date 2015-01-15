@@ -2,11 +2,11 @@
 
 Inspired by [Material Design guideline](http://www.google.ru/design/spec/material-design/introduction.html) from Google.
 
-![Image](https://raw.githubusercontent.com/moqod/ios-material-design/master/md.gif)
-
 # Features
 - Change background color with shape animation
 - Perform transition animation between two views
+
+![Image](https://raw.githubusercontent.com/moqod/ios-material-design/master/md.gif)
 
 # Sample
 Clone the repo and run the project.
