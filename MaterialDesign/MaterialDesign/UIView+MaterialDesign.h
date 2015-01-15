@@ -10,6 +10,9 @@
 
 @interface UIView (MaterialDesign)
 
+/**
+ These methods animate background color of a view using shape animation.
+ */
 - (void)mdInflateAnimatedFromPoint:(CGPoint)point backgroundColor:(UIColor *)backgroundColor duration:(NSTimeInterval)duration completion:(void (^)(void))block;
 - (void)mdDeflateAnimatedToPoint:(CGPoint)point backgroundColor:(UIColor *)backgroundColor duration:(NSTimeInterval)duration completion:(void (^)(void))block;
 
@@ -20,7 +23,6 @@
  - transition set toView frame equal to fromView frame
  - transtion uses duration * 0.65 for shape transition and (duration - duration * 0.65) for fade animation, change it if you want
  */
-
 + (void)mdInflateTransitionFromView:(UIView *)fromView
 							 toView:(UIView *)toView
 					  originalPoint:(CGPoint)originalPoint
