@@ -60,8 +60,6 @@ but with shape animation from given point.
 
 <br />
 You could use this functinoality with any `UIView` instance without subclassing, cool, isnt'it?
-
-<br />
 Source code is simple, customize, use, add merge requests!
 
 #Licence
