@@ -1,4 +1,4 @@
-# ios-material-design
+# iOS Material Design Library
 
 Inspired by [Material Design guideline](http://www.google.ru/design/spec/material-design/introduction.html) from Google.
 
@@ -6,8 +6,10 @@ Inspired by [Material Design guideline](http://www.google.ru/design/spec/materia
 - Change background color with shape animation
 - Perform transition animation between two views
 
+# Sample
+Clone the repo and run the project.
+
 # Usage
-Clone the repo and run the example project.
 Now there is only one interesting category `UIView+MaterialDesign`.
 Instance methods:
 ``` objc
