@@ -78,7 +78,7 @@
 - (void)setProgress:(CGFloat)progress animated:(BOOL)animated {
     _progress = MIN(1.0, MAX(0.0, progress));
     
-    if (animated) {
+    if (animated && self.window) {
         // setup animation
         CGFloat initialValue = self.circleLayer.strokeEnd;
         self.circleLayer.strokeEnd = self.progress;
@@ -98,6 +98,14 @@
 }
 
 - (void)finishWithCompletion:(id)completion {
+    if (!self.window) {
+        self.circleLayer.transform = CATransform3DIdentity;
+        self.circleLayer.strokeStart = 0;
+        self.circleLayer.strokeEnd = 1;
+        _progress = 1;
+        // call completion
+        return;
+    }
     CGFloat currentAngle = fmod([[self.circleLayer.presentationLayer valueForKeyPath:@"transform.rotation.z"] floatValue], M_PI * 2.0);
     
     NSTimeInterval rotationDuration = 1.0;
@@ -154,13 +162,25 @@
 
 - (void)startAnimating {
     if (![self isAnimating]) {
+        self.wasAnimating = YES;
         [self startRotationAnimation];
     }
 }
 
 - (void)stopAnimating {
     if ([self isAnimating]) {
+        self.wasAnimating = NO;
         [self innerStopAnimating];
+    }
+}
+
+- (void)didMoveToWindow {
+    if (self.wasAnimating) {
+        if (self.window) {
+            [self startRotationAnimation];
+        } else {
+            [self innerStopAnimating];
+        }
     }
 }
 
@@ -169,13 +189,12 @@
 }
 
 - (BOOL)isAnimating {
-    return [self.circleLayer animationForKey:@"transform.rotation.z"] != nil;
+    return self.wasAnimating;
 }
 
 #pragma mark - notifications
 
 - (void)applicationDidEnterBackgroundNotification:(NSNotification *)notification {
-    self.wasAnimating = [self isAnimating];
     [self innerStopAnimating];
 }
 

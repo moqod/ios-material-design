@@ -160,7 +160,18 @@
 - (void)startAnimating {
     if (![self isAnimating]) {
         self.wasAnimating = YES;
-        [self innerStartAnimating];
+        if (self.window) {
+            [self innerStartAnimating];
+        }
+    }
+}
+- (void)didMoveToWindow {
+    if ([self isAnimating]) {
+        if (self.window) {
+            [self innerStartAnimating];
+        } else {
+            [self innerStopAnimating];
+        }
     }
 }
 
