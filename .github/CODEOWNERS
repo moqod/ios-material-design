@@ -1,0 +1,4 @@
+# Ref: https://help.github.com/articles/about-codeowners/
+
+# iOS Owner
+*                                             @quizlet/ios-team
